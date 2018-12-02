@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1015836407228",
+    "firebase_url": "https://filofax-f535f.firebaseio.com",
+    "project_id": "filofax-f535f",
+    "storage_bucket": "filofax-f535f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015836407228:android:7ab13a6154f06501",
+        "android_client_info": {
+          "package_name": "com.calender.filofax.filofax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015836407228-d9hpv8nleo8badd9jmd4j8vbo9gidnrr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.calender.filofax.filofax",
+            "certificate_hash": "6f29f7ff2bc9de1091309fe2520deca76817e3a9"
+          }
+        },
+        {
+          "client_id": "1015836407228-tabkn1njuare7g0n21o5jqv0as5c180p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfiut4hyMppv-Ng1JKSQpRRzwqtsm8fbU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015836407228-tabkn1njuare7g0n21o5jqv0as5c180p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
