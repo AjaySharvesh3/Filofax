@@ -17,7 +17,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import android.support.design.widget.Snackbar;
 
 import com.calender.filofax.filofax.Fragments.IntroPhotosFragment;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.calender.filofax.filofax">
 
     <application
@@ -9,18 +10,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntroScreenActivity"
-            android:theme="@style/AppTheme.IntroActivity">
+        <activity
+            android:name=".CalenderMonthView.MainActivity"
+            android:theme="@style/AppTheme.IntroActivity"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CalenderActivity"
-            android:label="@string/title_activity_calender"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".IntroScreenActivity" />
+        <!--<activity-->
+            <!--android:name=".Activities.CalenderActivity"-->
+            <!--android:label="@string/title_activity_calender"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
+
+        <!-- <activity android:name=".CalenderView"></activity> -->
+
     </application>
 
 </manifest>
