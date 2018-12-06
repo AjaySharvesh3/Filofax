@@ -1,10 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
+    android:id="@+id/mainRelative"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000">
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_marginStart="15dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:src="@drawable/calendar_logo"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/app_name"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textStyle="bold"-->
+            <!--android:paddingStart="10dp"/>-->
+
+    <!--</LinearLayout>-->
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/calendar_logo"/>
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:paddingStart="10dp"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="-100dp"
+    android:layout_centerInParent="true"
+    app:cardElevation="100dp"
+    app:cardMaxElevation="100dp"
+    app:cardCornerRadius="10dp"
+    android:layout_height="350dp">
+
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:layout_gravity="center"
     android:padding="12dp">
 
     <TextView
@@ -12,14 +86,31 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:gravity="center"
+        android:textColor="#000"
+        android:paddingBottom="5dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="March"/>
+        tools:text="March"
+        android:fontFamily="sans-serif-condensed"
+        tools:ignore="SpUsage" />
+
+    <!--<View-->
+        <!--android:id="@+id/view_line"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:outlineAmbientShadowColor="#707070"-->
+        <!--android:outlineSpotShadowColor="#707070"-->
+        <!--android:background="#707070"-->
+        <!--tools:ignore="UnusedAttribute"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/month"-->
+        <!--app:layout_constraintStart_toStartOf="@id/month"-->
+        <!--app:layout_constraintTop_toTopOf="@id/month"/>-->
 
     <ImageView
         android:id="@+id/prev"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="0dp"
         android:padding="8dp"
         android:src="@drawable/left_arrow"
@@ -29,7 +120,7 @@
 
     <ImageView
         android:id="@+id/next"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="0dp"
         android:padding="8dp"
         android:src="@drawable/right_arrow"
@@ -41,8 +132,11 @@
         android:id="@+id/days"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:textColor="#000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/month"/>
 </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
+</RelativeLayout>

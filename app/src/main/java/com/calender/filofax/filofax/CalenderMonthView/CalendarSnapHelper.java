@@ -25,8 +25,8 @@ import android.view.View;
  */
 class CalendarSnapHelper extends PagerSnapHelper {
 
-    private static final int MAX_SCROLL_ON_FLING_DURATION = 100; // ms
-    private static final float MILLISECONDS_PER_INCH = 100.0F;
+    private static final int MAX_SCROLL_ON_FLING_DURATION = 200; // ms
+    private static final float MILLISECONDS_PER_INCH = 200.0F;
     static final int ITEM_PER_MONTH = 49;
 
     // Orientation helpers are lazily created per LayoutManager.
