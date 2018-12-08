@@ -11,19 +11,7 @@ import android.support.v7.widget.SnapHelper;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-/**
- * Implementation of the {@link SnapHelper} supporting calendar style snapping in either vertical or
- * horizontal orientation.
- * <p>
- * <p>
- * <p>
- * CalendarSnapHelper can help achieve a similar behavior to {@link android.widget.CalendarView}.
- * Set both {@link RecyclerView} and the items of the
- * {@link android.support.v7.widget.RecyclerView.Adapter} to have
- * {@link android.view.ViewGroup.LayoutParams#MATCH_PARENT} height and width and then attach
- * CalendarSnapHelper to the {@link RecyclerView} using {@link #attachToRecyclerView(RecyclerView)}.
- */
-class CalendarSnapHelper extends PagerSnapHelper {
+public class CalendarSnapHelper extends PagerSnapHelper {
 
     private static final int MAX_SCROLL_ON_FLING_DURATION = 200; // ms
     private static final float MILLISECONDS_PER_INCH = 200.0F;
@@ -241,11 +229,11 @@ class CalendarSnapHelper extends PagerSnapHelper {
         mRecyclerView = recyclerView;
     }
 
-    static int getSnapPosition() {
+    public static int getSnapPosition() {
         return mSnapPosition;
     }
 
-    void next() {
+    public void next() {
         mSnapPosition -= ITEM_PER_MONTH * (mSnapPosition % ITEM_PER_MONTH == 0 ? 0.5 : 1);
         mRecyclerView.smoothScrollToPosition(mSnapPosition);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -269,7 +257,7 @@ class CalendarSnapHelper extends PagerSnapHelper {
         mRecyclerView.smoothScrollToPosition(mSnapPosition);
     }
 
-    void prev() {
+    public void prev() {
         mSnapPosition += ITEM_PER_MONTH * (mSnapPosition % ITEM_PER_MONTH == 0 ? 1.5 : 1);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -292,7 +280,7 @@ class CalendarSnapHelper extends PagerSnapHelper {
         mRecyclerView.smoothScrollToPosition(mSnapPosition);
     }
 
-    void gotoMonth(int month) {
+    public void gotoMonth(int month) {
         mSnapPosition += month * ITEM_PER_MONTH;
         mRecyclerView.scrollToPosition(mSnapPosition);
     }

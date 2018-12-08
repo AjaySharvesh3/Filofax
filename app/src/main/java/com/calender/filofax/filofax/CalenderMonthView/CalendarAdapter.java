@@ -18,11 +18,11 @@ import java.util.Date;
 
 import static com.calender.filofax.filofax.CalenderMonthView.CalendarSnapHelper.ITEM_PER_MONTH;
 
-class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    static final int MONTH_PER_YEAR = 12;
-    static final int TYPE_TITLE = 0;
-    static final int TYPE_DAY = 1;
+    public static final int MONTH_PER_YEAR = 12;
+    public static final int TYPE_TITLE = 0;
+    public static final int TYPE_DAY = 1;
     private static final int DAY_PER_WEEK = 7;
     private Calendar mStartCalendar;
     private Calendar mEndCalendar;
@@ -30,7 +30,7 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int mItemWidth;
     private Context context;
 
-    CalendarAdapter() {
+    public CalendarAdapter() {
         int[][] matrix = new int[7][7];
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
@@ -113,35 +113,23 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     int date = calendar.get(Calendar.DAY_OF_MONTH) + dayPosition - firstDayIndex;
                     ((DayViewHolder) holder).day.setText(String.valueOf(date));
 
-                   SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                   //Getting date from device
-                    Date dateS = Calendar.getInstance().getTime();
-                    String deviceDate = df.format(dateS);
+                    int currentMonth = calendar.get(Calendar.MONTH);
+                    int currentYear = calendar.get(Calendar.YEAR);
+                    int deviceDate = Calendar.getInstance().get(Calendar.DATE);
+                    int deviceMonth = Calendar.getInstance().get(Calendar.MONTH);
+                    int deviceYear = Calendar.getInstance().get(Calendar.YEAR);
+
+                    Log.d("zz date",String.valueOf(date));
+                    Log.d("zz currentMonth",String.valueOf(currentMonth));
+                    Log.d("zz currentYear",String.valueOf( currentYear) + "\n");
+                    Log.d("zz deviceDate",String.valueOf( Calendar.getInstance().get(Calendar.DATE)) + "\n");
+                    Log.d("zz deviceMonth",String.valueOf(Calendar.getInstance().get(Calendar.MONTH)) + "\n");
+                    Log.d("zz deviceYear",String.valueOf( Calendar.getInstance().get(Calendar.YEAR))+ "\n");
 
 
-                    int snapPosition = CalendarView.getSnapPosition();
-                    if (snapPosition == -1) {
-                        snapPosition = CalendarSnapHelper.getSnapPosition();
-                    }
-                    Calendar currentMonthCalendar = getFirstDayOfMonth(snapPosition);
-                    int currentDate = currentMonthCalendar.get(Calendar.DATE);
-                    int currentMonth = currentMonthCalendar.get(Calendar.MONTH)+1;
-                    int currentYear = currentMonthCalendar.get(Calendar.YEAR);
-                    currentMonthCalendar.set(Calendar.DATE,date);
-
-                    Date dateC =  currentMonthCalendar.getTime();
-                    //Toast.makeText(context, "Month: " + currentMonth + " Year: " + currentYear, Toast.LENGTH_SHORT).show();
-                    Log.d("rrr1",String.valueOf(date));
-                    Log.d("rrr1",String.valueOf(currentMonth));
-                    Log.d("rrr1",String.valueOf( currentYear) + "\n");
-                    String calendarDate = df.format(dateC);
-
-                    if (deviceDate.equals(calendarDate)){
+                    if (deviceDate == date && deviceMonth == currentMonth && deviceYear == currentYear){
                         ((DayViewHolder) holder).iv_dayselector.setVisibility(View.VISIBLE);
-                        Toast.makeText(context, deviceDate, Toast.LENGTH_SHORT).show();
-                        Log.d("rrr1","calendarDate = " +calendarDate);
-                        Log.d("rrr1","deviceDate = " +deviceDate);
-                    }else {
+                        }else {
                         ((DayViewHolder) holder).iv_dayselector.setVisibility(View.INVISIBLE);
                     }
                 } else {
@@ -158,7 +146,7 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return ((mEndCalendar.get(Calendar.YEAR) - mStartCalendar.get(Calendar.YEAR)) * MONTH_PER_YEAR + mEndCalendar.get(Calendar.MONTH) - mStartCalendar.get(Calendar.MONTH) + 1) * ITEM_PER_MONTH;
     }
 
-    Calendar getFirstDayOfMonth(int position) {
+    public Calendar getFirstDayOfMonth(int position) {
         Calendar calendar = (Calendar) mEndCalendar.clone();
         int monthDistance = -position / ITEM_PER_MONTH;
         calendar.add(Calendar.YEAR, monthDistance / MONTH_PER_YEAR);
@@ -167,23 +155,23 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return calendar;
     }
 
-    Calendar getStartCalendar() {
+    public Calendar getStartCalendar() {
         return mStartCalendar;
     }
 
-    void setStartCalendar(Calendar startCalendar) {
+    public void setStartCalendar(Calendar startCalendar) {
         mStartCalendar = startCalendar;
     }
 
-    Calendar getEndCalendar() {
+    public Calendar getEndCalendar() {
         return mEndCalendar;
     }
 
-    void setEndCalendar(Calendar endCalendar) {
+    public void setEndCalendar(Calendar endCalendar) {
         mEndCalendar = endCalendar;
     }
 
-    void setDimensions(int itemWidth) {
+    public void setDimensions(int itemWidth) {
         mItemWidth = itemWidth;
     }
 

@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.popularmovies_stage2.kavinraju.popularmovies.srilasaka_developers.popularmovies_stage2.kavinraju.popularmovies.HomeActivity">
+    <item
+        android:id="@+id/action_monthlyView"
+        android:orderInCategory="1"
+        android:title="Monthly View"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_weeklyView"
+        android:orderInCategory="2"
+        android:title="Weekly View"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_signOut"
+        android:orderInCategory="3"
+        android:title="Sign Out"
+        app:showAsAction="never"/>
+</menu>
