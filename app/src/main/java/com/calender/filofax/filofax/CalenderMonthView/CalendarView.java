@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import static com.calender.filofax.filofax.CalenderMonthView.CalendarAdapter.TYP
 public class CalendarView extends ConstraintLayout implements View.OnClickListener {
 
     private CalendarSnapHelper mSnapHelper;
+    private static int month;
+    private static int year;
+    private static int mSnapPosition = -1;
 
     public CalendarView(Context context) {
         this(context, null);
@@ -85,12 +89,13 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
         });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-            int mSnapPosition = -1;
+            int nSnapPosition = -1;
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                int snapPosition = mSnapHelper.getSnapPosition();
-                if (snapPosition != mSnapPosition) {
+                int snapPosition = CalendarSnapHelper.getSnapPosition();
+                if (snapPosition != nSnapPosition) {
+                    nSnapPosition = snapPosition;
                     mSnapPosition = snapPosition;
                     Calendar currentMonthCalendar = adapter.getFirstDayOfMonth(snapPosition);
                     int currentMonth = currentMonthCalendar.get(Calendar.MONTH);
@@ -100,7 +105,12 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
                     nextView.setVisibility(currentMonth == endCalendar.get(Calendar.MONTH) && currentYear == endCalendar.get(Calendar.YEAR) ? GONE : VISIBLE);
                     prevView.setVisibility(currentMonth == startCalendar.get(Calendar.MONTH) && currentYear == startCalendar.get(Calendar.YEAR) ? GONE : VISIBLE);
 
-                    monthView.setText(String.format("%tB %s", currentMonthCalendar, currentYear != Calendar.getInstance().get(Calendar.YEAR) ? currentYear : "").trim());
+                    monthView.setText(String.format("%tB %s", currentMonthCalendar, currentYear != Calendar.getInstance().get(Calendar.YEAR) ? currentYear : currentYear).trim());
+                    month = currentMonth;
+                    year = currentYear;
+                    Log.d("rrr",String.valueOf(currentMonth));
+                    Log.d("rrr",String.valueOf(year));
+                    Log.d("rrr",String.valueOf(snapPosition));
                 }
             }
         });
@@ -120,4 +130,9 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
                 break;
         }
     }
+
+    public static int getSnapPosition() {
+        return mSnapPosition;
+    }
+
 }

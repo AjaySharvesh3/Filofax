@@ -33,7 +33,7 @@ class CalendarSnapHelper extends PagerSnapHelper {
     @Nullable
     private OrientationHelper mHorizontalHelper;
 
-    private int mSnapPosition;
+    private static int mSnapPosition;
 
     private RecyclerView mRecyclerView;
 
@@ -241,7 +241,7 @@ class CalendarSnapHelper extends PagerSnapHelper {
         mRecyclerView = recyclerView;
     }
 
-    int getSnapPosition() {
+    static int getSnapPosition() {
         return mSnapPosition;
     }
 

@@ -2,14 +2,19 @@ package com.calender.filofax.filofax.CalenderMonthView;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.calender.filofax.filofax.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import static com.calender.filofax.filofax.CalenderMonthView.CalendarSnapHelper.ITEM_PER_MONTH;
 
@@ -23,6 +28,7 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Calendar mEndCalendar;
     private int[] mCalendarMatrix = new int[49];
     private int mItemWidth;
+    private Context context;
 
     CalendarAdapter() {
         int[][] matrix = new int[7][7];
@@ -53,7 +59,7 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         switch (viewType) {
             case TYPE_TITLE:
                 View titleView = LayoutInflater.from(context).inflate(R.layout.title_view_holder, parent, false);
@@ -104,9 +110,42 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 int dayPosition = mCalendarMatrix[position % ITEM_PER_MONTH];
                 if (dayPosition >= firstDayIndex && dayPosition < calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + firstDayIndex) {
                     ((DayViewHolder) holder).day.setVisibility(View.VISIBLE);
-                    ((DayViewHolder) holder).day.setText(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH) + dayPosition - firstDayIndex));
+                    int date = calendar.get(Calendar.DAY_OF_MONTH) + dayPosition - firstDayIndex;
+                    ((DayViewHolder) holder).day.setText(String.valueOf(date));
+
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+
+                    //Getting date from device
+                    Date dateS = Calendar.getInstance().getTime();
+                    String deviceDate = df.format(dateS);
+
+
+                    int snapPosition = CalendarSnapHelper.getSnapPosition();
+                    if (snapPosition == -1) {
+                        snapPosition = CalendarSnapHelper.getSnapPosition();
+                    }
+                    Calendar currentMonthCalendar = getFirstDayOfMonth(snapPosition);
+                    int currentMonth = currentMonthCalendar.get(Calendar.MONTH)+1;
+                    int currentYear = currentMonthCalendar.get(Calendar.YEAR);
+                    currentMonthCalendar.set(Calendar.DATE,date);
+                    Date dateC =  currentMonthCalendar.getTime();
+                    //Toast.makeText(context, "Month: " + currentMonth + " Year: " + currentYear, Toast.LENGTH_SHORT).show();
+                    Log.d("rrr1",String.valueOf( date));
+                    Log.d("rrr1",String.valueOf(currentMonth));
+                    Log.d("rrr1",String.valueOf( currentYear) + "\n");
+                    String calendarDate = df.format(dateC);
+
+                    if (deviceDate.equals(calendarDate)){
+                        ((DayViewHolder) holder).iv_dayselector.setVisibility(View.VISIBLE);
+                        Toast.makeText(context, deviceDate, Toast.LENGTH_SHORT).show();
+                        Log.d("rrr1","calendarDate = " +calendarDate);
+                        Log.d("rrr1","deviceDate = " +deviceDate);
+                    }else {
+                        ((DayViewHolder) holder).iv_dayselector.setVisibility(View.INVISIBLE);
+                    }
                 } else {
                     ((DayViewHolder) holder).day.setVisibility(View.INVISIBLE);
+                    ((DayViewHolder) holder).iv_dayselector.setVisibility(View.INVISIBLE);
                 }
                 break;
         }
@@ -160,10 +199,12 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static class DayViewHolder extends RecyclerView.ViewHolder {
 
         TextView day;
+        ImageView iv_dayselector;
 
         DayViewHolder(View itemView) {
             super(itemView);
-            day = (TextView) itemView;
+            day = (TextView) itemView.findViewById(R.id.tv_date);
+            iv_dayselector =   itemView.findViewById(R.id.view_date_selector);
         }
     }
 }
