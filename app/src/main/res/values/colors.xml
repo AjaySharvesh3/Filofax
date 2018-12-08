@@ -5,4 +5,7 @@
     <color name="colorAccent">#000</color>
     <color name="colorPrimaryLight">#8898ff</color>
     <color name="white">#ffffff</color>
+
+    <color name="colorText">#212121</color>
+    <color name="colorBackground">#FFFFFF</color>
 </resources>
