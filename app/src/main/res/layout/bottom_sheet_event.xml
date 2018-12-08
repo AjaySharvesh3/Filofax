@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/paddind_16dp">
+
+        <ImageButton
+            android:id="@+id/img_btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_save"
+            app:layout_constraintBottom_toBottomOf="@id/btn_save"
+            app:srcCompat="@drawable/ic_close_black_24dp" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_eventName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:textColorHint="@color/black_dull"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_btn_close">
+
+            <EditText
+                android:id="@+id/et_eventName"
+                android:maxLines="1"
+                android:singleLine="true"
+                style="@style/AppTheme.AppBarOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/black_dull"
+                android:textColor="@color/black"
+                android:hint="Event Name" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:id="@+id/view_exp1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_eventName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_event_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calendar_black"
+
+            android:layout_marginStart="@dimen/margin_8dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/id_ll_getDate"
+            app:layout_constraintBottom_toBottomOf="@id/id_ll_getDate"/>
+
+        <LinearLayout
+            android:id="@+id/id_ll_getDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:gravity="center_vertical"
+            android:weightSum="3"
+            android:background="@drawable/bk_edit_text"
+
+            android:layout_marginEnd="@dimen/margin_32dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_event_calendar"
+            app:layout_constraintTop_toBottomOf="@+id/view_exp1">
+            <TextView
+                android:id="@+id/tv_event_date"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:text="12/12/2017" />
+            <Button
+                android:id="@+id/btn_event_select_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Select Date"
+                android:focusable="false"
+                android:textAllCaps="false"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alarm_black_24dp"
+
+            android:layout_marginStart="@dimen/margin_8dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/id_ll_getTime"
+            app:layout_constraintBottom_toBottomOf="@id/id_ll_getTime"/>
+
+        <LinearLayout
+            android:id="@+id/id_ll_getTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:gravity="center_vertical"
+            android:weightSum="3"
+            android:background="@drawable/bk_edit_text"
+
+            android:layout_marginEnd="@dimen/margin_32dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_event_time"
+            app:layout_constraintTop_toBottomOf="@+id/id_ll_getDate">
+            <TextView
+                android:id="@+id/tv_event_time"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                tools:text="11:00 AM" />
+            <Button
+                android:id="@+id/btn_event_select_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Select Time"
+                android:focusable="false"
+                android:textAllCaps="false"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/view_exp2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:layout_constraintTop_toBottomOf="@id/id_ll_getTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_event_do_not_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_repeat_black_24dp"
+
+            android:layout_marginStart="@dimen/margin_8dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ll_event_do_not_repeat"
+            app:layout_constraintBottom_toBottomOf="@id/ll_event_do_not_repeat"/>
+
+        <LinearLayout
+            android:id="@+id/ll_event_do_not_repeat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:gravity="center_vertical"
+            android:weightSum="3"
+            android:background="@drawable/bk_edit_text"
+
+            android:layout_marginEnd="@dimen/margin_32dp"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_32dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_event_calendar"
+            app:layout_constraintTop_toBottomOf="@+id/view_exp2">
+            <TextView
+                android:id="@+id/tv_monthly_report"
+                style="@style/Base.TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:text= "Do not repeat"
+                android:layout_marginEnd="@dimen/margin_32dp"/>
+            <Switch
+                android:id="@+id/switch_event_do_not_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <View
+
+            android:id="@+id/view_exp3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+
+            android:layout_marginTop="@dimen/margin_16dp"
+            app:layout_constraintTop_toBottomOf="@id/ll_event_do_not_repeat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btn_exp_add_attachment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add Attachment"
+            android:textAllCaps="false"
+
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_exp3"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>

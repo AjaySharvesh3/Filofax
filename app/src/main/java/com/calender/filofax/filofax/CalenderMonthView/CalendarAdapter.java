@@ -113,24 +113,25 @@ class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     int date = calendar.get(Calendar.DAY_OF_MONTH) + dayPosition - firstDayIndex;
                     ((DayViewHolder) holder).day.setText(String.valueOf(date));
 
-                    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-
-                    //Getting date from device
+                   SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                   //Getting date from device
                     Date dateS = Calendar.getInstance().getTime();
                     String deviceDate = df.format(dateS);
 
 
-                    int snapPosition = CalendarSnapHelper.getSnapPosition();
+                    int snapPosition = CalendarView.getSnapPosition();
                     if (snapPosition == -1) {
                         snapPosition = CalendarSnapHelper.getSnapPosition();
                     }
                     Calendar currentMonthCalendar = getFirstDayOfMonth(snapPosition);
+                    int currentDate = currentMonthCalendar.get(Calendar.DATE);
                     int currentMonth = currentMonthCalendar.get(Calendar.MONTH)+1;
                     int currentYear = currentMonthCalendar.get(Calendar.YEAR);
                     currentMonthCalendar.set(Calendar.DATE,date);
+
                     Date dateC =  currentMonthCalendar.getTime();
                     //Toast.makeText(context, "Month: " + currentMonth + " Year: " + currentYear, Toast.LENGTH_SHORT).show();
-                    Log.d("rrr1",String.valueOf( date));
+                    Log.d("rrr1",String.valueOf(date));
                     Log.d("rrr1",String.valueOf(currentMonth));
                     Log.d("rrr1",String.valueOf( currentYear) + "\n");
                     String calendarDate = df.format(dateC);

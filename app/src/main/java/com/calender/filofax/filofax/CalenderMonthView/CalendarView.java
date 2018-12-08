@@ -3,6 +3,8 @@ package com.calender.filofax.filofax.CalenderMonthView;
 import android.content.Context;
 import android.os.Build;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+import com.calender.filofax.filofax.Fragments.ExpenditureBottomSheetFragment;
 import com.calender.filofax.filofax.R;
 
 import java.util.Calendar;
@@ -27,6 +30,8 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
     private static int month;
     private static int year;
     private static int mSnapPosition = -1;
+    private ExpenditureBottomSheetFragment expenditureBottomSheetFragment;
+    private FragmentManager fragmentManager;
 
     public CalendarView(Context context) {
         this(context, null);
@@ -38,16 +43,26 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
 
     public CalendarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        android.support.v4.app.FragmentActivity fragmentActivity = (android.support.v4.app.FragmentActivity) getContext();
+        fragmentManager = fragmentActivity.getSupportFragmentManager();
         init(context);
     }
 
     void init(final Context context) {
-        View root = inflate(context, R.layout.calendar_view, this);
+        final View root = inflate(context, R.layout.calendar_view, this);
 
         final TextView monthView = root.findViewById(R.id.month);
         final View nextView = root.findViewById(R.id.next);
         final View prevView = root.findViewById(R.id.prev);
         final RecyclerView recyclerView = root.findViewById(R.id.days);
+        root.findViewById(R.id.expenditures_fab).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expenditureBottomSheetFragment = new ExpenditureBottomSheetFragment();
+                expenditureBottomSheetFragment.setExpenditureBottomSheetFragment(expenditureBottomSheetFragment);
+                expenditureBottomSheetFragment.show(fragmentManager, expenditureBottomSheetFragment.getTag());
+            }
+        });
         final CalendarAdapter adapter = new CalendarAdapter();
         GridLayoutManager layoutManager = new GridLayoutManager(context, 13, LinearLayoutManager.HORIZONTAL, true);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -106,11 +121,11 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
                     prevView.setVisibility(currentMonth == startCalendar.get(Calendar.MONTH) && currentYear == startCalendar.get(Calendar.YEAR) ? GONE : VISIBLE);
 
                     monthView.setText(String.format("%tB %s", currentMonthCalendar, currentYear != Calendar.getInstance().get(Calendar.YEAR) ? currentYear : currentYear).trim());
-                    month = currentMonth;
+                    month = currentMonth + 1;
                     year = currentYear;
-                    Log.d("rrr",String.valueOf(currentMonth));
-                    Log.d("rrr",String.valueOf(year));
-                    Log.d("rrr",String.valueOf(snapPosition));
+                    Log.d("rrr0",String.valueOf(month));
+                    Log.d("rrr0",String.valueOf(year));
+                    Log.d("rrr0",String.valueOf(snapPosition));
                 }
             }
         });
@@ -134,5 +149,10 @@ public class CalendarView extends ConstraintLayout implements View.OnClickListen
     public static int getSnapPosition() {
         return mSnapPosition;
     }
+
+    public static int getMonth() {
+        return month;
+    }
+
 
 }
